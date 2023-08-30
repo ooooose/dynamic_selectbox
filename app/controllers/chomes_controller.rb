@@ -1,0 +1,2 @@
+class ChomesController < ApplicationController
+end
