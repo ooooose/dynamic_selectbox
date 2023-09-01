@@ -14,7 +14,7 @@ ps:
 	docker-compose ps -a
 
 logs:
-	docker-compose logs -f api
+	docker-compose logs -f app
 
 bundle:
 	docker-compose run --rm app bundle install --without production
@@ -39,3 +39,6 @@ fresh:
 
 seed:
 	docker-compose run --rm app bin/rails db:seed
+
+console:
+	docker-compose run --rm app bin/rails console
