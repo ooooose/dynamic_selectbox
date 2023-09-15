@@ -1,19 +1,20 @@
-<div class="container mx-auto pt-4 text-center">
+<div class="container pt-4">
+  <h1 class='text-center mb-4'>東京の区市町村と町丁目名</h1>
   <%= form_with url: result_path, method: :get, local: true do |f| %>
     <div class="form-group">
       <%= f.label :municipality, "区市町名" %>
       <% municipality_category = @municipalities.order(:id).map{ |municipality| [municipality.name, municipality.id, data: { children_path: municipality_chomes_path(municipality) }] } %>
-      <%= f.select :municipality_id , municipality_category, {include_blank: "選択してください"}, class: "select-parent" %>
+      <%= f.select :municipality_id , municipality_category, {include_blank: "選択してください"}, class: "select-parent form-control" %>
     </div>
 
     <div class="form-group mt-3">
       <%= f.label :chome, "町丁目名" %>
       <% chome_category = Municipality.try(:chome) || [] %>
       <% chome_options = chome_category.map{ |chome| [chome.name, chome.id] } %>
-      <%= f.select :chome_id, chome_options, { include_blank: '選択してください' }, class: "select-children", disabled: true %>
+      <%= f.select :chome_id, chome_options, { include_blank: '選択してください' }, class: "select-children form-control", disabled: true %>
     </div>
     <div class="actions text-center mt-5">
-      <%= f.submit "結果を出力", id: 'search-btn', disabled: true %>
+      <%= f.submit "結果を出力", id: 'search-btn', disabled: true, class: 'btn btn-primary' %>
     </div>
   <% end %>
 </div>
